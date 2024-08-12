@@ -139,8 +139,8 @@ fn reset_clock(ena: u32, div: u32) -> Result<(), Timeout> {
 
 pub(crate) fn init_card() -> Result<(), CardError> {
     info!("init sdio...");
-    // let hconf = HardConf::from(read_reg(REG_HCON));
-    // debug!("{hconf:?}");
+    let hconf = HardConf::from(read_reg(REG_HCON));
+    debug!("{hconf:?}");
     // Reset Control Register
     let reset_mask = ControlMask::controller_reset.bits()
         | ControlMask::fifo_reset.bits()
