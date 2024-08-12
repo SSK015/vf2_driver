@@ -1,4 +1,5 @@
 use core::time::Duration;
+use riscv::register::time;
 
 pub const MTIME_BASE: usize = 0x0200_BFF8;
 pub const TIME_BASE: usize = 4000000;
@@ -39,5 +40,6 @@ fn to_tick(dur: Duration) -> usize {
 
 #[inline]
 fn read_tick() -> usize {
-    unsafe { (MTIME_BASE as *const usize).read_volatile() }
+    // unsafe { (MTIME_BASE as *const usize).read_volatile() }
+riscv::register::time::read()
 }
