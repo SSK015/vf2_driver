@@ -83,7 +83,7 @@ fn read_data(buf: &mut [u8; BLKSIZ_DEFAULT as usize]) -> Result<(), CardError> {
             return Err(CardError::DataTransferTimeout);
         }
         if mask & InterruptMask::rxdr.bits() != 0 || mask & InterruptMask::dto.bits() != 0 {
-            while fifo_cnt() > 0 {
+            while fifo_cnt() > 1 {
                 buf[offset] = read_fifo(offset);
                 offset += 1;
             }

@@ -64,7 +64,7 @@ impl Command {
             | CmdMask::check_response_crc.bits();
         cmd
     }
-
+// low 5 bits are OP Num
     pub fn to_cmd(&self) -> u32 {
         self.reg_flags | self.index
     }
